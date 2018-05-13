@@ -10,3 +10,4 @@
 - file Procfile ใช้ run command บน heroku ตอนเริ่มโปรแกรม
 - requirements.txt ใช้ในการลง library ที่ต้องใช้
 - วิธีทำ requirements.txt ใช้ pip install pipreqs จากนั้นสร้าง file โดยใช้ pipreqs ./ จะได้ file มาตรงนั้น
+- ใช้ int(os.environ.get('PORT', 5000)) ในการใช้ port ของ heroku
