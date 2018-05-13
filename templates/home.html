@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>Welcome to Home</title>
+        {% endif %}
+    </head>
+    <body>
+        {% for user in users %}
+        <h1>Hi!, {{user.name}}</h1>
+        {% endfor %}
+    </body>
+</html>
