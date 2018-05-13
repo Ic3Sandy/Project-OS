@@ -7,6 +7,7 @@
 
 ### Information
 
+- การเขียน [Sockets](https://www.tutorialspoint.com/python3/python_networking.htm) และ [Multithreaded](https://www.tutorialspoint.com/python3/python_multithreading.htm)
 - file Procfile ใช้ run command บน heroku ตอนเริ่มโปรแกรม
 - requirements.txt ใช้ในการลง library ที่ต้องใช้
 - วิธีทำ requirements.txt ใช้ pip install pipreqs จากนั้นสร้าง file โดยใช้ pipreqs ./ จะได้ file มาตรงนั้น
