@@ -1,31 +1,34 @@
 import socket
 import time
 
-# s1 = socket.socket()
-# print("[Create socket]: %s" % s1)
-# s2 = socket.socket()
-# print("[Create socket]: %s" % s2)
-
 host = socket.gethostname()
 print("[Hostname]: %s" % host)
 
-port1 = 5000
-# s1.connect((host, port1))
-port2 = 6000
-# s2.connect((host, port2))
+port1 = 10000
+port2 = 20000
+port3 = 30000
 
-def client(s):
-    print("[Connection]: %s" % s)
-    msg = s.recv(1024)
-    print("Data receives: %s" % msg.decode('ascii'))
-    s.close
+
+def client(clientsocket, numder):
+
+    # print("[Connection]: %s" % clientsocket)
+    msg = clientsocket.recv(1024)
+    print("Thread %d Random number: %s" % (numder, msg.decode('ascii')))
+    clientsocket.close
+
 
 if __name__ == '__main__':
-    while True:
-        s1 = socket.socket()
-        s2 = socket.socket()
-        s1.connect((host, port1))
-        s2.connect((host, port2))
-        client(s1)
-        client(s2)
-        time.sleep(1)
+
+    clientsocket1 = socket.socket()
+    clientsocket2 = socket.socket()
+    clientsocket3 = socket.socket()
+
+    clientsocket1.connect((host, port1))
+    clientsocket2.connect((host, port2))
+    clientsocket3.connect((host, port3))
+
+    client(clientsocket1, 1)
+    client(clientsocket2, 2)
+    client(clientsocket3, 3)
+
+    # time.sleep(1)
