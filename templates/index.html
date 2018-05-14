@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<script type="text/javascript">
+
+    function submit_form(){
+    
+        var url = $SCRIPT_ROOT + '/_add_numbers'
+        var data = {
+                a : document.getElementsByName("a")[0].value,
+                b : document.getElementsByTagName("input")[1].value
+            }
+        function success(data){
+
+            document.getElementById("result").innerHTML = data.result
+
+        }
+
+        $.getJSON(url, data, function(data){ success(data) })
+
+    }
+
+    function machine(){
+
+        var url = $SCRIPT_ROOT + '/_random_numbers'
+
+        function column(data, i){
+
+            var column = "column" + i
+            document.getElementById(column).innerHTML = data.result
+
+        }
+        $.getJSON(url, null, function(data){ column(data, 1) })
+        $.getJSON(url, null, function(data){ column(data, 2) })
+        $.getJSON(url, null, function(data){ column(data, 3) })
+        $.getJSON(url, null, function(data){ column(data, 4) })
+        $.getJSON(url, null, function(data){ column(data, 5) })
+
+    }
+    
+
+    
+
+    window.onload = function(){
+        
+        var i = 1
+        function loop1() {
+            submit_form()
+            setTimeout(function() {
+                if (i <= 10) {
+                    i++
+                    loop1()
+                }
+             }, 1000)
+        }
+        // loop1()
+
+        function loop2() {
+            machine()
+            setTimeout(function() {
+                if (true) {
+                    loop2()
+                }
+             }, 100)
+        }
+        loop2()
+    }
+
+</script>
+
+<h1>jQuery Example</h1>
+<h3 id="column1">$$$</h3>
+<h3 id="column2">$$$</h3>
+<h3 id="column3">$$$</h3>
+<h3 id="column4">$$$</h3>
+<h3 id="column5">$$$</h3>
+<p>
+  <input type="text" size="5" name="a"> + 
+  <input type="text" size="5" name="b"> =
+  <span id="result">???</span>
+<p>
+        <button onclick="submit_form()">Click me</button>
+{% endblock %}

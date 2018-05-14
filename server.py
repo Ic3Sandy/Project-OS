@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
+from random import randint
 import os
 
 from datetime import datetime
@@ -8,8 +9,17 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Hello!"
+    return render_template('index.html')
 
+@app.route('/_add_numbers')
+def add_numbers():
+    a = request.args.get('a', 0, type=int)
+    b = request.args.get('b', 0, type=int)
+    return jsonify(result=a + b)
+
+@app.route('/_random_numbers')
+def random_numbers():
+    return jsonify(result=randint(0, 20)) # 0 - 100
 
 @app.route('/home')
 def homepage():
@@ -28,7 +38,6 @@ def homepage():
     
 
 if __name__ == '__main__':
-    # app.run(debug=True, use_reloader=True)
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0',port=port)
+    app.run(host='0.0.0.0', port=port, use_reloader=True)
 
