@@ -1,0 +1,50 @@
+html{
+    background-image: url("/static/img/bg1.png");
+}
+
+.box{
+    background-image: url("/static/img/bg.jpg");
+    width:100%;
+    height: 566px;
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size:75% 98%;
+}
+
+div.box img{
+    width: 203px; 
+    height: 241px;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "a b c";
+}
+
+.left{
+    grid-area: a;
+    margin-top: 208px;
+    margin-left: 320px;
+}
+
+.center{
+    grid-area: b;    
+    margin-top: 208px;
+}
+
+.right{
+    grid-area: c;        
+    margin-top: 208px;
+    margin-right: 330px;
+}
+
+.button{
+    text-align: center;
+}
+.button button{
+    font-size: 50px;
+    background-color: red;
+}

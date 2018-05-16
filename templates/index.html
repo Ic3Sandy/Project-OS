@@ -1,5 +1,4 @@
-{% extends "layout.html" %}
-{% block body %}
+{% extends "layout.html" %} {% block body %}
 
 <script type="text/javascript">
 
@@ -8,42 +7,42 @@
     var url = $SCRIPT_ROOT + '/_random_numbers'
 
 
-    function start(){
+    function start() {
 
-        
+
         var url1 = $SCRIPT_ROOT + '/_init1'
         var url2 = $SCRIPT_ROOT + '/_init2'
         var url3 = $SCRIPT_ROOT + '/_init3'
 
-        function column1(data){
+        function column1(data) {
 
             column1 = data.result
 
         }
 
-        function column2(data){
+        function column2(data) {
 
             column2 = data.result
 
         }
 
-        function column3(data){
+        function column3(data) {
 
             column3 = data.result
 
         }
 
-        $.getJSON(url1, null, function(data){ column1(data) })
-        $.getJSON(url2, null, function(data){ column2(data) })
-        $.getJSON(url3, null, function(data){ column3(data) })
+        $.getJSON(url1, null, function (data) { column1(data) })
+        $.getJSON(url2, null, function (data) { column2(data) })
+        $.getJSON(url3, null, function (data) { column3(data) })
 
         function loop1() {
             machine1(url)
-            setTimeout(function() {
+            setTimeout(function () {
                 if (i1 <= column1) {
                     i1++
                     loop1()
-                }else
+                } else
                     i1 = 1
             }, 100)
         }
@@ -51,136 +50,140 @@
 
         function loop2() {
             machine2(url)
-            setTimeout(function() {
+            setTimeout(function () {
                 if (i2 <= column2) {
                     i2++
                     loop2()
-                }else
-                    i2 = 1 
+                } else
+                    i2 = 1
             }, 100)
         }
         loop2()
 
         function loop3() {
             machine3(url)
-            setTimeout(function() {
+            setTimeout(function () {
                 if (i3 <= column3) {
                     i3++
                     loop3()
-                }else
-                    i3 = 1 
+                } else
+                    i3 = 1
             }, 100)
         }
         loop3()
 
     }
 
-    function submit_form(){
-    
+    function submit_form() {
+
         var url = $SCRIPT_ROOT + '/_add_numbers'
         var data = {
-                a : document.getElementsByName("a")[0].value,
-                b : document.getElementsByTagName("input")[1].value
-            }
-        function success(data){
+            a: document.getElementsByName("a")[0].value,
+            b: document.getElementsByTagName("input")[1].value
+        }
+        function success(data) {
 
             document.getElementById("result").innerHTML = data.result
 
         }
 
-        $.getJSON(url, data, function(data){ success(data) })
+        $.getJSON(url, data, function (data) { success(data) })
 
     }
 
-    function machine1(url){
+    function machine1(url) {
 
-        function show(data){
+        function show(data) {
 
-            document.getElementById('column1').innerHTML = data.result
-
-            if(data.result == '1')
+            if (data.result == '1')
                 document.getElementById("img1").src = "/static/img/A.jpg";
-            else if(data.result == '2')
+            else if (data.result == '2')
                 document.getElementById("img1").src = "/static/img/B.jpg";
-            else if(data.result == '3')
+            else if (data.result == '3')
                 document.getElementById("img1").src = "/static/img/C.jpg";
-            else if(data.result == '4')
+            else if (data.result == '4')
                 document.getElementById("img1").src = "/static/img/D.jpg";
-            else if(data.result == '5')
+            else if (data.result == '5')
                 document.getElementById("img1").src = "/static/img/F.jpg";
 
         }
 
-        $.getJSON(url, null, function(data){ show(data) })
+        $.getJSON(url, null, function (data) { show(data) })
 
     }
 
-    function machine2(url){
+    function machine2(url) {
 
-        function show(data){
+        function show(data) {
 
-            document.getElementById('column2').innerHTML = data.result
 
-            if(data.result == '1')
+            if (data.result == '1')
                 document.getElementById("img2").src = "/static/img/A.jpg";
-            else if(data.result == '2')
+            else if (data.result == '2')
                 document.getElementById("img2").src = "/static/img/B.jpg";
-            else if(data.result == '3')
+            else if (data.result == '3')
                 document.getElementById("img2").src = "/static/img/C.jpg";
-            else if(data.result == '4')
+            else if (data.result == '4')
                 document.getElementById("img2").src = "/static/img/D.jpg";
-            else if(data.result == '5')
+            else if (data.result == '5')
                 document.getElementById("img2").src = "/static/img/F.jpg";
 
         }
 
-        $.getJSON(url, null, function(data){ show(data) })
+        $.getJSON(url, null, function (data) { show(data) })
 
     }
 
-    function machine3(url){
+    function machine3(url) {
 
-        function show(data){
+        function show(data) {
 
-            document.getElementById('column3').innerHTML = data.result
 
-            if(data.result == '1')
+            if (data.result == '1')
                 document.getElementById("img3").src = "/static/img/A.jpg";
-            else if(data.result == '2')
+            else if (data.result == '2')
                 document.getElementById("img3").src = "/static/img/B.jpg";
-            else if(data.result == '3')
+            else if (data.result == '3')
                 document.getElementById("img3").src = "/static/img/C.jpg";
-            else if(data.result == '4')
+            else if (data.result == '4')
                 document.getElementById("img3").src = "/static/img/D.jpg";
-            else if(data.result == '5')
+            else if (data.result == '5')
                 document.getElementById("img3").src = "/static/img/F.jpg";
 
         }
 
-        $.getJSON(url, null, function(data){ show(data) })
+        $.getJSON(url, null, function (data) { show(data) })
 
     }
-    
-    window.onload = function(){
 
-        document.getElementById('column1').innerHTML = '5'
-        document.getElementById('column2').innerHTML = '5'
-        document.getElementById('column3').innerHTML = '5'
-
+    window.onload = function () {
         document.getElementById("img1").src = "/static/img/F.jpg";
         document.getElementById("img2").src = "/static/img/F.jpg";
-        document.getElementById("img3").src = "/static/img/F.jpg"; 
-        
+        document.getElementById("img3").src = "/static/img/F.jpg";
     }
 
 </script>
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<div class="box">
+    <div class="container">
+        <div class="left">
+            <img id="img1" src="">
+        </div>
 
-<h1>Slot Machine</h1>
-<h3 id="column1">$$$</h3>
-<h3 id="column2">$$$</h3>
-<h3 id="column3">$$$</h3>
-<img id="img1" src="">
+        <div class="center">
+            <img id="img2" src="">
+        </div>
+
+        <div class="right">
+            <img id="img3" src="">
+        </div>
+    </div>
+</div>
+<!-- <img id="img1" src="">
 <img id="img2" src="">
-<img id="img3" src="">
-        <button onclick="start()">Start!</button>
+<img id="img3" src=""> -->
+<div class="button">
+    <button onclick="start()">&nbsp; GO! &nbsp;</button>
+</div>
+
 {% endblock %}
