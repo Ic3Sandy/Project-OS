@@ -18,15 +18,17 @@ serversocket3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serversocket3.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 print("[Create socket]: %s" % (serversocket3))
 
-port1 = 10000
+port1 = int(os.environ.get('PORT', 10000))
 serversocket1.bind((host, port1))
 
-port2 = 20000
+port2 = int(os.environ.get('PORT', 20000))
 serversocket2.bind((host, port2))
 
-port3 = 30000
+port3 = int(os.environ.get('PORT', 30000))
 serversocket3.bind((host, port3))
 
+def def_port():
+    return [port1, port2, port3]
 
 def thread(serversocket, number):
 
@@ -51,6 +53,7 @@ def thread(serversocket, number):
         msg = '%d' % random_num
         clientsocket.send(msg.encode('ascii'))
         clientsocket.close()
+
 
 def start_tcpServer():
 
