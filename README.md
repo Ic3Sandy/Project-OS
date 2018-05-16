@@ -12,4 +12,4 @@
 - requirements.txt ใช้ในการลง library ที่ต้องใช้
 - วิธีทำ requirements.txt ใช้ pip install pipreqs จากนั้นสร้าง file โดยใช้ pipreqs ./ จะได้ file มาตรงนั้น
 - ใช้ int(os.environ.get('PORT', 5000)) ในการใช้ port ของ heroku
-- เรียนรู้การใช้ [jQuery AJAX](https://www.w3schools.com/jquery/jquery_ref_ajax.asp) ในการทำหน้า html
+- เรียนรู้การใช้ [jQuery AJAX](https://www.w3schools.com/jquery/jquery_ref_ajax.asp) ในการทำหน้า html และ [flask ajax](https://github.com/pallets/flask/tree/0.12.4/examples/jqueryexample)

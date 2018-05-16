@@ -1,17 +1,21 @@
 import socket
 import _thread
 from random import randint
+import os
 
 host = socket.gethostname()
 print("[Get hostname]: %s" % (host))
 
 serversocket1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+serversocket1.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 print("[Create socket]: %s" % (serversocket1))
 
 serversocket2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+serversocket2.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 print("[Create socket]: %s" % (serversocket2))
 
 serversocket3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+serversocket3.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 print("[Create socket]: %s" % (serversocket3))
 
 port1 = 10000
@@ -47,6 +51,23 @@ def thread(serversocket, number):
         msg = '%d' % random_num
         clientsocket.send(msg.encode('ascii'))
         clientsocket.close()
+
+def start_tcpServer():
+
+    try: 
+
+        _thread.start_new_thread(thread, (serversocket1, 1))
+        _thread.start_new_thread(thread, (serversocket2, 2))
+        _thread.start_new_thread(thread, (serversocket3, 3))
+
+    except:
+
+        print ("Error: unable to start thread")
+
+    while True:
+        pass
+    
+
 
 if __name__  == '__main__':
 

@@ -4,11 +4,11 @@ import os
 import socket
 import time
 import _thread
+import multiprocessing
 
-from datetime import datetime
+import tcpServer
 
-
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='static')
 
 
 @app.route('/')
@@ -82,6 +82,10 @@ if __name__ == '__main__':
 
     host = socket.gethostname()
 
+    p = multiprocessing.Process(target=tcpServer.start_tcpServer)
+    p.start()
+    
+    print("Start Server...")
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, use_reloader=True)
+    app.run(host='0.0.0.0', port=port, use_reloader=False)
 
