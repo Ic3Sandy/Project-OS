@@ -37,10 +37,6 @@
         $.getJSON(url2, null, function(data){ column2(data) })
         $.getJSON(url3, null, function(data){ column3(data) })
 
-        document.getElementById('column1').innerHTML = '5'
-        document.getElementById('column2').innerHTML = '5'
-        document.getElementById('column3').innerHTML = '5'
-
         function loop1() {
             machine1(url)
             setTimeout(function() {
@@ -102,6 +98,17 @@
 
             document.getElementById('column1').innerHTML = data.result
 
+            if(data.result == '1')
+                document.getElementById("img1").src = "/static/img/A.jpg";
+            else if(data.result == '2')
+                document.getElementById("img1").src = "/static/img/B.jpg";
+            else if(data.result == '3')
+                document.getElementById("img1").src = "/static/img/C.jpg";
+            else if(data.result == '4')
+                document.getElementById("img1").src = "/static/img/D.jpg";
+            else if(data.result == '5')
+                document.getElementById("img1").src = "/static/img/F.jpg";
+
         }
 
         $.getJSON(url, null, function(data){ show(data) })
@@ -113,6 +120,17 @@
         function show(data){
 
             document.getElementById('column2').innerHTML = data.result
+
+            if(data.result == '1')
+                document.getElementById("img2").src = "/static/img/A.jpg";
+            else if(data.result == '2')
+                document.getElementById("img2").src = "/static/img/B.jpg";
+            else if(data.result == '3')
+                document.getElementById("img2").src = "/static/img/C.jpg";
+            else if(data.result == '4')
+                document.getElementById("img2").src = "/static/img/D.jpg";
+            else if(data.result == '5')
+                document.getElementById("img2").src = "/static/img/F.jpg";
 
         }
 
@@ -126,6 +144,17 @@
 
             document.getElementById('column3').innerHTML = data.result
 
+            if(data.result == '1')
+                document.getElementById("img3").src = "/static/img/A.jpg";
+            else if(data.result == '2')
+                document.getElementById("img3").src = "/static/img/B.jpg";
+            else if(data.result == '3')
+                document.getElementById("img3").src = "/static/img/C.jpg";
+            else if(data.result == '4')
+                document.getElementById("img3").src = "/static/img/D.jpg";
+            else if(data.result == '5')
+                document.getElementById("img3").src = "/static/img/F.jpg";
+
         }
 
         $.getJSON(url, null, function(data){ show(data) })
@@ -134,35 +163,13 @@
     
     window.onload = function(){
 
-        // var url1 = $SCRIPT_ROOT + '/_init1'
-        // var url2 = $SCRIPT_ROOT + '/_init2'
-        // var url3 = $SCRIPT_ROOT + '/_init3'
-
-        // function column1(data){
-
-        //     column1 = data.result
-
-        // }
-
-        // function column2(data){
-
-        //     column2 = data.result
-
-        // }
-
-        // function column3(data){
-
-        //     column3 = data.result
-
-        // }
-
-        // $.getJSON(url1, null, function(data){ column1(data) })
-        // $.getJSON(url2, null, function(data){ column2(data) })
-        // $.getJSON(url3, null, function(data){ column3(data) })
-
         document.getElementById('column1').innerHTML = '5'
         document.getElementById('column2').innerHTML = '5'
         document.getElementById('column3').innerHTML = '5'
+
+        document.getElementById("img1").src = "/static/img/F.jpg";
+        document.getElementById("img2").src = "/static/img/F.jpg";
+        document.getElementById("img3").src = "/static/img/F.jpg"; 
         
     }
 
@@ -172,5 +179,8 @@
 <h3 id="column1">$$$</h3>
 <h3 id="column2">$$$</h3>
 <h3 id="column3">$$$</h3>
+<img id="img1" src="">
+<img id="img2" src="">
+<img id="img3" src="">
         <button onclick="start()">Start!</button>
 {% endblock %}
