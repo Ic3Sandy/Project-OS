@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 from random import randint
 import os
 import socket
-import time
 import multiprocessing
 import signal
 import sys
@@ -15,6 +14,7 @@ p = multiprocessing.Process(target=tcpServer.start_tcpServer)
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
+
 
 @app.route('/_init', methods=['GET'])
 def initial_game():
@@ -44,27 +44,12 @@ def random_numbers():
     return jsonify(result=randint(1, 5)) # random 1 - 5
 
 
-@app.route('/home', methods=['GET'])
-def homepage():
-    users = [
-        {
-            'name' : 'ice',
-        },
-        {
-            'name' : 'ic3'
-        },
-        {
-            'name' : 'Ic3Sandy'
-        }
-    ]
-    return render_template('home.html', title='Home', users=users)
-
-
 def signal_handler(signal, frame):
         print('Process was kill!')
         print('Good Bye')
         p.terminate()
         sys.exit(0)
+
 
 if __name__ == '__main__':    
 

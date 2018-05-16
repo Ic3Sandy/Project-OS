@@ -19,16 +19,18 @@ def client(clientsocket, numder):
 
 if __name__ == '__main__':
 
-    clientsocket1 = socket.socket()
-    clientsocket2 = socket.socket()
-    clientsocket3 = socket.socket()
+    while True:
 
-    clientsocket1.connect((host, port1))
-    clientsocket2.connect((host, port2))
-    clientsocket3.connect((host, port3))
+        clientsocket1 = socket.socket()
+        clientsocket2 = socket.socket()
+        clientsocket3 = socket.socket()
 
-    client(clientsocket1, 1)
-    client(clientsocket2, 2)
-    client(clientsocket3, 3)
+        clientsocket1.connect((host, port1))
+        clientsocket2.connect((host, port2))
+        clientsocket3.connect((host, port3))
 
-    # time.sleep(1)
+        client(clientsocket1, 1)
+        client(clientsocket2, 2)
+        client(clientsocket3, 3)
+
+        time.sleep(1)
