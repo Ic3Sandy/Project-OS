@@ -27,18 +27,19 @@ div.box img{
 .left{
     grid-area: a;
     margin-top: 208px;
-    margin-left: 320px;
+    margin-left: 334px;
 }
 
 .center{
     grid-area: b;    
     margin-top: 208px;
+    margin-left: 4px;
 }
 
 .right{
     grid-area: c;        
     margin-top: 208px;
-    margin-right: 330px;
+    margin-right: 344px;
 }
 
 .button{
