@@ -3,12 +3,11 @@ from random import randint
 import os
 import socket
 import time
-import _thread
 import multiprocessing
 
 import tcpServer
 
-app = Flask(__name__, static_url_path='static')
+app = Flask(__name__, static_url_path='')
 
 
 @app.route('/')
