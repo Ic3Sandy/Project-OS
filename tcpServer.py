@@ -27,6 +27,8 @@ serversocket2.bind((host, port2))
 port3 = int(os.environ.get('PORT', 30000))
 serversocket3.bind((host, port3))
 
+def def_port():
+    return [port1, port2, port3]
 
 def thread(serversocket, number):
 

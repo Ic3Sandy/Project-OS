@@ -11,8 +11,15 @@ app = Flask(__name__, static_url_path='/static')
 
 p = multiprocessing.Process(target=tcpServer.start_tcpServer)
 
+list_port = [10000, 20000, 30000]
+
+
 @app.route('/', methods=['GET'])
 def index():
+    port = tcpServer.def_port()
+    list_port[0] = port[0]
+    list_port[1] = port[1]
+    list_port[2] = port[2]
     return render_template('index.html')
 
 
@@ -21,13 +28,13 @@ def initial_game():
 
     socket_num = request.args.get('socket', 0, type=int)
     
-    port = 10000
+    port = list_port[0]
 
     if(socket_num == 2):
-        port = 20000
+        port = list_port[1]
 
     elif(socket_num == 3):
-        port = 30000
+        port = list_port[2]
 
     clientsocket = socket.socket()
     clientsocket.connect((host, port))
