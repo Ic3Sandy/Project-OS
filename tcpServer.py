@@ -7,6 +7,7 @@ host = socket.gethostname()
 print("[Get hostname]: %s" % (host))
 
 # Create socket with address family AF_INET and sock type SOCK_STREAM
+# and set socket option
 serversocket1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serversocket1.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 print("[Create socket]: %s" % (serversocket1))
@@ -19,7 +20,7 @@ serversocket3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serversocket3.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 print("[Create socket]: %s" % (serversocket3))
 
-# Set port and bind the socket to adress
+# Set port and bind the socket to address
 port1 = int(os.environ.get('PORT', 10000))
 serversocket1.bind((host, port1))
 
@@ -33,7 +34,7 @@ serversocket3.bind((host, port3))
 def def_port():
     return [port1, port2, port3]
 
-# Create function of thread
+# Create thread function
 def thread(serversocket, number):
 
     print("[Start Thread]: ", number)
@@ -42,7 +43,6 @@ def thread(serversocket, number):
         serversocket.listen(5)
 
         # Socket be bound to an address and listening for connections
-        # clientsocket is object use to send and receive data on connection
         clientsocket, addr = serversocket.accept()
         # print("[Got connection]: ", addr)
 
@@ -58,11 +58,11 @@ def thread(serversocket, number):
         print("[Thread]: %d Random Number: %d" % (number, random_num))
 
         msg = '%d' % random_num
-        # Converse massage to assci code
+        # Encode massage to assci code
         clientsocket.send(msg.encode('ascii'))
         clientsocket.close()
 
-
+# Create start_tcpServer that use by server.py to start a thread
 def start_tcpServer():
 
     try: 
@@ -84,6 +84,7 @@ if __name__  == '__main__':
 
     try: 
 
+        #Start a thread that execute thread function
         _thread.start_new_thread(thread, (serversocket1, 1))
         _thread.start_new_thread(thread, (serversocket2, 2))
         _thread.start_new_thread(thread, (serversocket3, 3))
