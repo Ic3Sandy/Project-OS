@@ -2,10 +2,11 @@ import socket
 import _thread
 from random import randint
 import os
-
+# Get hostname of pc
 host = socket.gethostname()
 print("[Get hostname]: %s" % (host))
 
+# Create socket with address family AF_INET and sock type SOCK_STREAM
 serversocket1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serversocket1.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 print("[Create socket]: %s" % (serversocket1))
@@ -18,6 +19,7 @@ serversocket3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serversocket3.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 print("[Create socket]: %s" % (serversocket3))
 
+# Set port and bind the socket to adress
 port1 = int(os.environ.get('PORT', 10000))
 serversocket1.bind((host, port1))
 
@@ -27,15 +29,20 @@ serversocket2.bind((host, port2))
 port3 = int(os.environ.get('PORT', 30000))
 serversocket3.bind((host, port3))
 
+# Create function to return list of port
 def def_port():
     return [port1, port2, port3]
 
+# Create function of thread
 def thread(serversocket, number):
 
     print("[Start Thread]: ", number)
     while True:
-
+        # Enable server to accept connections and assign queue with 5
         serversocket.listen(5)
+
+        # Socket be bound to an address and listening for connections
+        # clientsocket is object use to send and receive data on connection
         clientsocket, addr = serversocket.accept()
         # print("[Got connection]: ", addr)
 
@@ -51,6 +58,7 @@ def thread(serversocket, number):
         print("[Thread]: %d Random Number: %d" % (number, random_num))
 
         msg = '%d' % random_num
+        # Converse massage to assci code
         clientsocket.send(msg.encode('ascii'))
         clientsocket.close()
 
