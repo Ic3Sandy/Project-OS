@@ -5,6 +5,18 @@ import os
 # Get hostname of pc
 host = socket.gethostname()
 print("[Get hostname]: %s" % (host))
+ports =[10000, 20000, 30000]
+
+# def get_open_port():
+#         import socket
+#         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#         s.bind(("",0))
+#         s.listen(1)
+#         port = s.getsockname()[1]
+#         s.close()
+#         return port
+
+# ports =[get_open_port(), get_open_port(), get_open_port()]
 
 # Create socket with address family AF_INET and sock type SOCK_STREAM
 # and set socket option
@@ -21,18 +33,21 @@ serversocket3.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 print("[Create socket]: %s" % (serversocket3))
 
 # Set port and bind the socket to address
-port1 = int(os.environ.get('PORT', 10000))
+port1 = int(os.environ.get('PORT', ports[0]))
 serversocket1.bind((host, port1))
+# ports[0] = serversocket1.getsockname()[1]
 
-port2 = int(os.environ.get('PORT', 20000))
+port2 = int(os.environ.get('PORT', ports[1]))
 serversocket2.bind((host, port2))
+# ports[1] = serversocket2.getsockname()[1]
 
-port3 = int(os.environ.get('PORT', 30000))
+port3 = int(os.environ.get('PORT', ports[2]))
 serversocket3.bind((host, port3))
+# ports[2] = serversocket3.getsockname()[1]
 
 # Create function to return list of port
 def def_port():
-    return [port1, port2, port3]
+    return ports
 
 # Create thread function
 def thread(serversocket, number):
@@ -44,7 +59,7 @@ def thread(serversocket, number):
 
         # Socket be bound to an address and listening for connections
         clientsocket, addr = serversocket.accept()
-        # print("[Got connection]: ", addr)
+        print("[Got connection]: ", addr)
 
         if(number == 1):
             random_num = randint(100, 110)
@@ -77,7 +92,6 @@ def start_tcpServer():
 
     while True:
         pass
-    
 
 
 if __name__  == '__main__':

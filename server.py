@@ -22,6 +22,7 @@ def index():
     list_port[0] = port[0]
     list_port[1] = port[1]
     list_port[2] = port[2]
+    print("[Port]: ", list_port)
     return render_template('index.html')
 
 # Connect URL to initial_game that create socket to connect tcpServer.py
