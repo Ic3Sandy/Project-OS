@@ -20,10 +20,11 @@ list_port = [10000, 20000, 30000]
 # Connect URL to index function that render index.html page
 @app.route('/', methods=['GET'])
 def index():
-    port = tcpServer.def_port()
-    list_port[0] = port[0]
-    list_port[1] = port[1]
-    list_port[2] = port[2]
+    if PORT == 5000:
+        port = tcpServer.def_port()
+        list_port[0] = port[0]
+        list_port[1] = port[1]
+        list_port[2] = port[2]
     return render_template('index.html')
 
 # Connect URL to initial_game that create socket to connect tcpServer.py
