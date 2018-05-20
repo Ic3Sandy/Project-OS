@@ -7,17 +7,6 @@ host = socket.gethostname()
 print("[Get hostname]: %s" % (host))
 ports =[10000, 20000, 30000]
 
-# def get_open_port():
-#         import socket
-#         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#         s.bind(("",0))
-#         s.listen(1)
-#         port = s.getsockname()[1]
-#         s.close()
-#         return port
-
-# ports =[get_open_port(), get_open_port(), get_open_port()]
-
 # Create socket with address family AF_INET and sock type SOCK_STREAM
 # and set socket option
 serversocket1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -35,15 +24,12 @@ print("[Create socket]: %s" % (serversocket3))
 # Set port and bind the socket to address
 port1 = int(os.environ.get('PORT', ports[0]))
 serversocket1.bind((host, port1))
-# ports[0] = serversocket1.getsockname()[1]
 
 port2 = int(os.environ.get('PORT', ports[1]))
 serversocket2.bind((host, port2))
-# ports[1] = serversocket2.getsockname()[1]
 
 port3 = int(os.environ.get('PORT', ports[2]))
 serversocket3.bind((host, port3))
-# ports[2] = serversocket3.getsockname()[1]
 
 # Create function to return list of port
 def def_port():
