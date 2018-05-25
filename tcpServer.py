@@ -37,7 +37,7 @@ def thread(serversocket, number):
 
         serversocket.listen(5)
         clientsocket, addr = serversocket.accept()
-        # print("[Got connection]: ", addr)
+        print("[Got connection]: ", addr)
 
         if(number == 1):
             random_num = randint(100, 110)
