@@ -2,6 +2,7 @@ var url_init = '_init'
 var url_ran = '_random_numbers'
 var column = [0, 0, 0]
 var i = [1, 1, 1]
+var token = 0
 
 // Assign dictionary
 var data1 = { socket : 1 }
@@ -36,7 +37,8 @@ function start(){
                 loop(number)
 
             }else 
-                
+                // if (number == 2)
+
                 i[number] = 1
 
         }, 100) // 0.1 second
@@ -87,6 +89,7 @@ function machine(url, number){
 // Display default image when window execute this page
 window.onload = function(){
 
+    token = 3
     document.getElementById("img0").src = "/static/img/F.jpg";
     document.getElementById("img1").src = "/static/img/F.jpg";
     document.getElementById("img2").src = "/static/img/F.jpg"; 
