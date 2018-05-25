@@ -35,18 +35,12 @@ def initial_game():
     socket_num = request.args.get('socket', 0, type=int)
     
     port = list_port[0]
-    random_num = randint(100, 110)
 
     if(socket_num == 2):
         port = list_port[1]
-        random_num = randint(120, 130)
 
     elif(socket_num == 3):
         port = list_port[2]
-        random_num = randint(140, 150)
-
-    if PORT != 5000:
-        return jsonify(result = random_num)
 
     # Create socket and connect to host
     clientsocket = socket.socket()
