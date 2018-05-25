@@ -4,7 +4,8 @@ var column = [0, 0, 0]
 var i = [1, 1, 1]
 
 var token = 0
-var check_reward = ['', '', '']
+var check_reward = [0, 0, 0]
+var working = false
 
 // Assign dictionary
 var data1 = { socket : 1 }
@@ -13,10 +14,13 @@ var data3 = { socket : 3 }
 
 function start(){
 
-    if(token == 0)
+    if(token == 0 || working)
         return
-    else
+    else{
         token--
+        working = true
+    }
+        
 
     document.getElementById("token").innerHTML = token
 
@@ -43,10 +47,8 @@ function start(){
 
             }else{
 
-                if (number == 2){
-                    
-                    document.getElementById("token").innerHTML = token
-                }
+                if (number == 2)
+                    check_rewards()
 
                 i[number] = 1
 
@@ -96,6 +98,44 @@ function machine(url_ran, number){
 
     // Get JSON data from server by url and run show function    
     $.getJSON(url_ran, null, function(data){ show(data) })
+
+}
+
+function check_rewards(){
+
+    working = false
+
+    if(check_reward[0] == 5 && check_reward[1] == 5 && check_reward[1] == 5){
+
+        token+=10
+        alert("You get a ten token!")
+
+    }
+
+    else if(check_reward[0] == 1 && check_reward[1] == 2 && check_reward[1] == 3){
+
+        token+=7
+        alert("You get a seven token!")
+
+    }
+
+    else if(check_reward[0] == check_reward[1] && check_reward[1] == check_reward[2]){
+
+        token+=5
+        alert("You get a five token!")
+
+    }
+
+    else if(check_reward[0] == check_reward[1] || check_reward[1] == check_reward[2]){
+
+        token+=3
+        alert("You get a three token!")
+
+    }
+
+    else alert("You have to try harder than this!")
+
+    document.getElementById("token").innerHTML = token
 
 }
 
