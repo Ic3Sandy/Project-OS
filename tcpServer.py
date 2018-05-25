@@ -2,10 +2,10 @@ import socket
 import _thread
 from random import randint
 import os
+
 # Get hostname of pc
 host = socket.gethostname()
 print("[Get hostname]: %s" % (host))
-ports =[10000, 20000, 30000]
 
 # Create socket with address family AF_INET and sock type SOCK_STREAM
 # and set socket option
@@ -21,19 +21,18 @@ serversocket3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serversocket3.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 print("[Create socket]: %s" % (serversocket3))
 
+list_port = [10000, 20000, 30000]
+
 # Set port and bind the socket to address
-port1 = int(os.environ.get('PORT', ports[0]))
-serversocket1.bind((host, port1))
+serversocket1.bind((host, list_port[0]))
 
-port2 = int(os.environ.get('PORT', ports[1]))
-serversocket2.bind((host, port2))
+serversocket2.bind((host, list_port[1]))
 
-port3 = int(os.environ.get('PORT', ports[2]))
-serversocket3.bind((host, port3))
+serversocket3.bind((host, list_port[2]))
 
 # Create function to return list of port
 def def_port():
-    return ports
+    return list_port
 
 # Create thread function
 def thread(serversocket, number):

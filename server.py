@@ -11,9 +11,8 @@ app = Flask(__name__, static_url_path='/static')
 PORT = int(os.environ.get('PORT', 5000))
 
 # Create Process object with target start_tcpServer function
-if PORT == 5000:
-    import tcpServer
-    p = multiprocessing.Process(target=tcpServer.start_tcpServer)
+import tcpServer
+p = multiprocessing.Process(target=tcpServer.start_tcpServer)
 
 list_port = [10000, 20000, 30000]
 
@@ -25,6 +24,7 @@ def index():
     list_port[1] = port[1]
     list_port[2] = port[2]
     return render_template('index.html')
+
 
 # Connect URL to initial_game that create socket to connect tcpServer.py
 # and return value that receive from host
@@ -62,10 +62,12 @@ def initial_game():
     # Return Response object that have result = value
     return jsonify(result = value)
 
+
 # Connect URL to _random_number that return random number 1 to 5
 @app.route('/_random_numbers', methods=['GET'])
 def random_numbers():
     return jsonify(result=randint(1, 5)) # random 1 - 5
+
 
 # Create signal_handler function that if connection is interrupt by user(use ctrl+C)
 # it will terminate process and end 
@@ -82,8 +84,7 @@ if __name__ == '__main__':
     host = socket.gethostname()
 
     # Start Process with target start_tcpServer function
-    if PORT == 5000:
-        p.start()
+    p.start()
 
     # Set handler for signal that is interrupt from keyboard
     signal.signal(signal.SIGINT, signal_handler)
