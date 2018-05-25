@@ -55,12 +55,10 @@ def initial_game():
     # Return Response object that have result = value
     return jsonify(result = value)
 
-
 # Connect URL to _random_number that return random number 1 to 5
 @app.route('/_random_numbers', methods=['GET'])
 def random_numbers():
     return jsonify(result=randint(1, 5)) # random 1 - 5
-
 
 # Create signal_handler function that if connection is interrupt by user(use ctrl+C)
 # it will terminate process and end 

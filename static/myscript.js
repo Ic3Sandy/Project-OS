@@ -3,25 +3,31 @@ var url_ran = '_random_numbers'
 var column = [0, 0, 0]
 var i = [1, 1, 1]
 
+// Assign dictionary
 var data1 = { socket : 1 }
 var data2 = { socket : 2 }
 var data3 = { socket : 3 }
 
 function start(){
 
+    // Assign data that receive from server
     function column(data, i){
 
         column[i] = data.result
 
     }   
 
+    // Get JSON data from server by url and run column function
     $.getJSON(url_init, data1, function(data){ column(data, 0) })
     $.getJSON(url_init, data2, function(data){ column(data, 1) })
     $.getJSON(url_init, data3, function(data){ column(data, 2) })
 
+    // Loop for display image
     function loop(number){
 
         machine(url_ran, number)
+
+        // Display data after 0.1 second 
         setTimeout(function() {
 
             if (i[number] <= column[number]) {
@@ -37,12 +43,14 @@ function start(){
 
     }
 
+    // Start loop that parallel work by thread
     loop(0)
     loop(1)
     loop(2)
 
 }
 
+// Display image from data that receive
 function machine(url, number){
 
     function show(data){
@@ -71,10 +79,12 @@ function machine(url, number){
 
     }
 
+    // Get JSON data from server by url and run show function    
     $.getJSON(url, null, function(data){ show(data) })
 
 }
 
+// Display default image when window execute this page
 window.onload = function(){
 
     document.getElementById("img0").src = "/static/img/F.jpg";
