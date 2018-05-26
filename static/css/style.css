@@ -1,5 +1,6 @@
-html{
+body{
     background-image: url("/static/img/bg1.png");
+    overflow: hidden;
 }
 
 .box{
@@ -51,10 +52,13 @@ div.box img{
 }
 
 .token{
-    width: 320px;
+    width: 180px;
     padding: 10px;
-    border: 5px solid gray;
+    border: 4px solid black;
     margin: 0;
     text-align: center;
-    background-color: antiquewhite;
+    background-color: darkgreen; 
+    /* background-color: teal; */
+    font-size: 30px;
+    color: white; 
 }
