@@ -25,7 +25,17 @@ function start(){
     document.getElementById("token").innerHTML = token
 
     // Assign data that receive from server
-    function column(data, i){ column[i] = data.result }   
+    function column(data, i){ 
+        column[i] = data.result
+
+        if(i == 2){
+            // Start loop that parallel work by thread
+            loop(0)
+            loop(1)
+            loop(2)
+        }
+
+    }   
 
     // Get JSON data from server by url and run column function
     $.getJSON(url_init, data1, function(data){ column(data, 0) })
@@ -41,12 +51,12 @@ function start(){
         setTimeout(function() {
 
             if (i[number] <= column[number]) {
-
+                
                 i[number]++
                 loop(number)
 
             }else{
-
+                // alert("i[number]: "+i[number]+" column[number]: "+column[number])
                 if (number == 2)
                     check_rewards()
 
@@ -57,11 +67,6 @@ function start(){
         }, 100) // 0.1 second
 
     }
-
-    // Start loop that parallel work by thread
-    loop(0)
-    loop(1)
-    loop(2)
 
 }
 
@@ -103,16 +108,15 @@ function machine(url_ran, number){
 
 function check_rewards(){
 
-    working = false
 
-    if(check_reward[0] == 5 && check_reward[1] == 5 && check_reward[1] == 5){
+    if(check_reward[0] == 5 && check_reward[1] == 5 && check_reward[2] == 5){
 
         token+=10
         alert("You get a ten token!")
 
     }
 
-    else if(check_reward[0] == 1 && check_reward[1] == 2 && check_reward[1] == 3){
+    else if(check_reward[0] == 1 && check_reward[1] == 2 && check_reward[2] == 3){
 
         token+=7
         alert("You get a seven token!")
@@ -128,12 +132,14 @@ function check_rewards(){
 
     else if(check_reward[0] == check_reward[1] || check_reward[1] == check_reward[2]){
 
-        token+=3
-        alert("You get a three token!")
+        token+=1
+        alert("You get a one token!")
 
     }
 
     else alert("You have to try harder than this!")
+
+    working = false
 
     document.getElementById("token").innerHTML = token
 
