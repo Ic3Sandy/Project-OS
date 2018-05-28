@@ -10,6 +10,7 @@ body{
     background-repeat:no-repeat;
     background-position: center;
     background-size:75% 98%;
+    margin-bottom: -25px;
 }
 
 div.box img{
