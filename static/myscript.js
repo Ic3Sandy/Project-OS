@@ -64,7 +64,7 @@ function start(){
 
             }
                 
-        }, 100) // 0.1 second
+        }, 75) // 0.1 second
 
     }
 
